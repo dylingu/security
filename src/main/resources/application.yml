@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: mp
+
+  # spring security配置
+  security:
+    user:     # 无配置文件时生效
+      name: admin
+      password: 123456
+
+  # 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test
+    username: root
+    password: 927685qwer
+
+# mybatis plus配置
+mybatis-plus:
+  type-aliases-package: com.lingu.mp.pojo
+  mapper-locations: "classpath*:/mapper/**/*.xml"     # xml文件扫描
+  configuration:
+    map-underscore-to-camel-case: true      # 是否启用驼峰命名
+    cache-enabled: false      # 是否开启缓存
+  global-config:
+    db-config:
+      id-type: assign_id      # 主键生成策略
+      update-strategy: not_null     # 更新策略
