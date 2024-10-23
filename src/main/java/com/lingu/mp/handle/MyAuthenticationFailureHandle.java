@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,16 +16,16 @@ import java.util.HashMap;
 /**
  * 请求未失败
  */
-public class MyAuthenticationFailureHandle implements AuthenticationFailureHandler {
+public class MyAuthenticationFailureHandle extends SimpleUrlAuthenticationFailureHandler implements AuthenticationFailureHandler {
     private static final Logger log = LoggerFactory.getLogger(MyAuthenticationFailureHandle.class);
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-        log.error("MyAuthenticationFailureHandle onAuthenticationFailure");
+        log.error("MyAuthenticationFailureHandle Failure");
         // 1、设置响应头信息
         HashMap<Object, Object> result = new HashMap<>();
         result.put("code", "4102");
-        result.put("message", exception.getMessage());
+        result.put("message", "登陆失败：" + exception.getMessage());
         result.put("data", null);
 
         // 2、转换成json字符串

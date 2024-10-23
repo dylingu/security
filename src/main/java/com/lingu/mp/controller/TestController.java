@@ -17,13 +17,7 @@ public class TestController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/login")
-    public Result<String> login(@RequestBody User user) {
-        log.info("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        return Result.success();
-    }
-
-    @GetMapping("/get")
+    @GetMapping("/gets")
     public Result<Principal> test2() {
         log.info("获取登录用户信息");
         return Result.success(SecurityContextHolder.getContext().getAuthentication());
@@ -31,7 +25,7 @@ public class TestController {
 
     @PostMapping("/add")
     public Result<String> test3(@RequestBody User user) {
-        log.info("添加用户：{}", user.getName());
+        log.info("添加用户：{}", user.getUsername());
         userService.saveDetailUser(user);
         return Result.success();
     }

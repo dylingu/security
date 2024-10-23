@@ -24,7 +24,7 @@ public class MyAuthenticationEntryHandle implements AuthenticationEntryPoint {
         // 1、设置响应头信息
         HashMap<Object, Object> result = new HashMap<>();
         result.put("code", "4103");
-        result.put("message", "当前未登录！");
+        result.put("message", authException.getMessage());
 
         // 2、转换成json字符串
         String jsonResult = JSON.toJSONString(result);
